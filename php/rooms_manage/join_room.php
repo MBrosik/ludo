@@ -29,7 +29,7 @@ if (
    // ------------------------
    // get DataBase and tables
    // ------------------------
-   $data_base = mysqli_connect($host, $user, $passwd, $dbname);
+   
    $rooms_table = get_data($data_base, "rooms");
    $players_table = get_data($data_base, "players");
 

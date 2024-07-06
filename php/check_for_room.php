@@ -22,7 +22,7 @@ if (
    // get DataBase and tables
    // ------------------------
    include("./tools/chinczyk_config.php");
-   $data_base = mysqli_connect($host, $user, $passwd, $dbname);
+
    $rooms_table = get_data($data_base, "rooms");
    $players_table = get_data($data_base, "players");
 
@@ -37,6 +37,10 @@ if (
    $stmt = mysqli_prepare($data_base, "INSERT into players(name, last_sync) values(?, ?)");
    mysqli_stmt_bind_param($stmt, "si", $input_name, $sync_time);
    mysqli_stmt_execute($stmt);
+
+   if (mysqli_stmt_errno($stmt)) {
+      echo "Błąd podczas wykonywania zapytania: " . mysqli_stmt_error($stmt);
+   }
 
    $last_id = $data_base->insert_id;
 
@@ -103,4 +107,8 @@ function createNewRoom()
    $stmt1 = mysqli_prepare($data_base, "INSERT INTO rooms (" . $selected_color . ", game_phase, start_time) VALUES (?, 1, ?)");
    mysqli_stmt_bind_param($stmt1, "ii", $last_id, $start_time);
    mysqli_stmt_execute($stmt1);
+
+   if (mysqli_stmt_errno($stmt1)) {
+      echo "Błąd podczas wykonywania zapytania: " . mysqli_stmt_error($stmt1);
+   }
 }

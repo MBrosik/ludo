@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Baza danych: `ludo`
 --
 
+CREATE DATABASE ludo;
+use ludo;
+
 -- --------------------------------------------------------
 
 --

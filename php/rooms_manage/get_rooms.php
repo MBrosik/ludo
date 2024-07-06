@@ -32,7 +32,7 @@ $build_string1 .= ")";
 // ---------------------------
 // get data from database
 // ---------------------------
-$data_base = mysqli_connect($host, $user, $passwd, $dbname);
+
 $players_table = get_data($data_base, "players");
 
 $time_check = microtime_float() - (15 * 60 * 1000);

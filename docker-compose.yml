@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  mysql:
+    build: ./db/
+    ports:
+      - "3306:3306"
+    networks:
+      - mynetwork
+
+  web:
+    build: .
+    ports:
+      - "80:80"    
+    depends_on:
+      - mysql
+    networks:
+      - mynetwork
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8080:80"       
+    depends_on:
+      - mysql 
+    networks:
+      - mynetwork
+  
+networks:
+  mynetwork:
