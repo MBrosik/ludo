@@ -2,7 +2,14 @@ version: '3.8'
 
 services:
   mysql:
-    build: ./db/
+    image: mysql:8.0.19
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ludo
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
     ports:
       - "3306:3306"
     networks:
