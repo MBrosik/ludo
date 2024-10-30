@@ -9,7 +9,7 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
     volumes:
-      - ./db:/docker-entrypoint-initdb.d/
+      - ./db-image/db:/docker-entrypoint-initdb.d/
     ports:
       - "3306:3306"
     networks:
